@@ -7,17 +7,6 @@ def avg(a, b):
 		return 0
 
 
-subjectNum=0
-totalL1Sum=0
-totalL2Sum=0
-totalL3Sum=0
-totalL4Sum=0
-totalL5Sum=0
-totalL6Sum=0
-totalL7Sum=0
-totalL8Sum=0
-totalL9Sum=0
-totalL10Sum=0
 
 l1SumWhenL1=[]
 l2SumWhenL2=[]
@@ -85,7 +74,6 @@ for root, dirs, files in os.walk('.' + os.path.sep):
 		if (os.path.splitext(filename)[-1]) == '.txt':
 			pNum = ((os.path.splitext(filename)[0]).split('_'))[0]
 			levelNum = int(((os.path.splitext(filename)[0]).split('_'))[4])
-			subjectNum=subjectNum+1
 			try:
 				with open(filename, 'r') as f:
 					print("\n\nFILE NAME : ", filename)
@@ -204,6 +192,7 @@ for root, dirs, files in os.walk('.' + os.path.sep):
 									print("Goal Touch Level : %s" % goalTouchForce)
 
 									l1SumWhenL1[levelNum-1] = l1SumWhenL1[levelNum-1] + l1PreForceTime+l2PreForceTime+l3PreForceTime+l4PreForceTime+l5PreForceTime+l6PreForceTime+l7PreForceTime+l8PreForceTime+l9PreForceTime+l10PreForceTime
+
 									print("Level 1 Pre Force Time : %f\nLevel 2 Pre Force Time : %f\nLevel 3 Pre Force Time : %f\nLevel 4 Pre Force Time : %f\nLevel 5 Pre Force Time : %f\nLevel 6 Pre Force Time : %f\nLevel 7 Pre Force Time : %f\nLevel 8 Pre Force Time : %f\nLevel 9 Pre Force Time : %f\nLevel 10 Pre Force Time : %f\nSum of Pre Force Time : %f"%(l1PreForceTime, l2PreForceTime, l3PreForceTime, l4PreForceTime, l5PreForceTime, l6PreForceTime, l7PreForceTime, l8PreForceTime, l9PreForceTime, l10PreForceTime, l1PreForceTime+l2PreForceTime+l3PreForceTime+l4PreForceTime+l5PreForceTime+l6PreForceTime+l7PreForceTime+l8PreForceTime+l9PreForceTime+l10PreForceTime))
 
 								tFlag=1
@@ -280,6 +269,7 @@ for root, dirs, files in os.walk('.' + os.path.sep):
 
 
 									l2SumWhenL2[levelNum-1] = l2SumWhenL2[levelNum-1] + l1PreForceTime+l2PreForceTime+l3PreForceTime+l4PreForceTime+l5PreForceTime+l6PreForceTime+l7PreForceTime+l8PreForceTime+l9PreForceTime+l10PreForceTime
+
 									print("Level 1 Pre Force Time : %f\nLevel 2 Pre Force Time : %f\nLevel 3 Pre Force Time : %f\nLevel 4 Pre Force Time : %f\nLevel 5 Pre Force Time : %f\nLevel 6 Pre Force Time : %f\nLevel 7 Pre Force Time : %f\nLevel 8 Pre Force Time : %f\nLevel 9 Pre Force Time : %f\nLevel 10 Pre Force Time : %f\nSum of Pre Force Time : %f"%(l1PreForceTime, l2PreForceTime, l3PreForceTime, l4PreForceTime, l5PreForceTime, l6PreForceTime, l7PreForceTime, l8PreForceTime, l9PreForceTime, l10PreForceTime, l1PreForceTime+l2PreForceTime+l3PreForceTime+l4PreForceTime+l5PreForceTime+l6PreForceTime+l7PreForceTime+l8PreForceTime+l9PreForceTime+l10PreForceTime))
 
 								tFlag=1
@@ -881,14 +871,13 @@ for root, dirs, files in os.walk('.' + os.path.sep):
 			except Exception as e:
 				print(e)
 
-#print("weaksum : %f\n" % weakSum)
 #totalCnt=l1Cnt+l2Cnt+l3Cnt+l4Cnt+l5Cnt+l6Cnt+l7Cnt+l8Cnt+l9Cnt+l10Cnt
 print("\n\n")
 print("===================Result===================")
 for i in range(10):
 #	print("When Level %i : \nAverage L1 Pre Force Time : %f\nAverage L2 Pre Force Time : %f\nAverage L3 Pre Force Time : %f\nAverage L4 Pre Force Time : %f\nAverage L5 Pre Force Time : %f\nAverage L6 Pre Force Time : %f\nAverage L7 Pre Force Time : %f\nAverage L8 Pre Force Time : %f\nAverage L9 Pre Force Time : %f\nAverage L10 Pre Force Time : %f\nAverage Sum of Pre Force Time : %f"%(i+1, avg(l1SumWhenL1[i], l1Cnt[i]), avg(l2SumWhenL2[i], l2Cnt[i]), avg(l3SumWhenL3[i], l3Cnt[i]), avg(l4SumWhenL4[i], l4Cnt[i]), avg(l5SumWhenL5[i], l5Cnt[i]), avg(l6SumWhenL6[i], l6Cnt[i]), avg(l7SumWhenL7[i], l7Cnt[i]), avg(l8SumWhenL8[i],l8Cnt[i]), avg(l9SumWhenL9[i],l9Cnt[i]), avg(l10SumWhenL10[i],l10Cnt[i]), (totalL1Sum+totalL2Sum+totalL3Sum+totalL4Sum+totalL5Sum+totalL6Sum+totalL7Sum+totalL8Sum+totalL9Sum+totalL10Sum)/totalCnt))
-	# print("When Level %i : \nAverage L1 Pre Force Time : %f\nAverage L2 Pre Force Time : %f\nAverage L3 Pre Force Time : %f\nAverage L4 Pre Force Time : %f\nAverage L5 Pre Force Time : %f\nAverage L6 Pre Force Time : %f\nAverage L7 Pre Force Time : %f\nAverage L8 Pre Force Time : %f\nAverage L9 Pre Force Time : %f\nAverage L10 Pre Force Time : %f"%(i+1, avg(l1SumWhenL1[i], l1Cnt[i]), avg(l2SumWhenL2[i], l2Cnt[i]), avg(l3SumWhenL3[i], l3Cnt[i]), avg(l4SumWhenL4[i], l4Cnt[i]), avg(l5SumWhenL5[i], l5Cnt[i]), avg(l6SumWhenL6[i], l6Cnt[i]), avg(l7SumWhenL7[i], l7Cnt[i]), avg(l8SumWhenL8[i],l8Cnt[i]), avg(l9SumWhenL9[i],l9Cnt[i]), avg(l10SumWhenL10[i],l10Cnt[i])))
-	print("When Level %i : \nL1 sum when L1 : %i\nL2 sum when L2 : %i\nL3 sum when L3 : %i\nL4 sum when L4 : %i\nL5 sum when L5 : %i\nL6 sum when L6 : %i\nL7 sum when L7 : %i\nL8 sum when L8 : %i\nL9 sum when L9 : %i\nL10 sum when L10 : %i"%(i+1, l1SumWhenL1[i], l2SumWhenL2[i], l3SumWhenL3[i], l4SumWhenL4[i], l5SumWhenL5[i], l6SumWhenL6[i], l7SumWhenL7[i], l8SumWhenL8[i], l9SumWhenL9[i], l10SumWhenL10[i]))
-	print("When Level %i : \nL1 Count : %i\nL2 Count : %i\nL3 Count : %i\nL4 Count : %i\nL5 Count : %i\nL6 Count : %i\nL7 Count : %i\nL8 Count : %i\nL9 Count : %i\nL10 Count : %i"%(i+1, l1Cnt[i], l2Cnt[i], l3Cnt[i], l4Cnt[i], l5Cnt[i], l6Cnt[i], l7Cnt[i], l8Cnt[i], l9Cnt[i], l10Cnt[i]))
+	print("\nWhen Level %i : \nAverage L1 Pre Force Time : %f\nAverage L2 Pre Force Time : %f\nAverage L3 Pre Force Time : %f\nAverage L4 Pre Force Time : %f\nAverage L5 Pre Force Time : %f\nAverage L6 Pre Force Time : %f\nAverage L7 Pre Force Time : %f\nAverage L8 Pre Force Time : %f\nAverage L9 Pre Force Time : %f\nAverage L10 Pre Force Time : %f\nAverage L1~L10 Pre Force Time : %f"%(i+1, avg(l1SumWhenL1[i], l1Cnt[i]), avg(l2SumWhenL2[i], l2Cnt[i]), avg(l3SumWhenL3[i], l3Cnt[i]), avg(l4SumWhenL4[i], l4Cnt[i]), avg(l5SumWhenL5[i], l5Cnt[i]), avg(l6SumWhenL6[i], l6Cnt[i]), avg(l7SumWhenL7[i], l7Cnt[i]), avg(l8SumWhenL8[i],l8Cnt[i]), avg(l9SumWhenL9[i],l9Cnt[i]), avg(l10SumWhenL10[i],l10Cnt[i]),avg(l1SumWhenL1[i]+l2SumWhenL2[i]+l3SumWhenL3[i]+l4SumWhenL4[i]+l5SumWhenL5[i]+l6SumWhenL6[i]+l7SumWhenL7[i]+l8SumWhenL8[i]+l9SumWhenL9[i]+l10SumWhenL10[i],l1Cnt[i]+l2Cnt[i]+l3Cnt[i]+l4Cnt[i]+l5Cnt[i]+l6Cnt[i]+l7Cnt[i]+l8Cnt[i]+l9Cnt[i]+l10Cnt[i])))
+	# print("When Level %i : \nL1 sum when L1 : %i\nL2 sum when L2 : %i\nL3 sum when L3 : %i\nL4 sum when L4 : %i\nL5 sum when L5 : %i\nL6 sum when L6 : %i\nL7 sum when L7 : %i\nL8 sum when L8 : %i\nL9 sum when L9 : %i\nL10 sum when L10 : %i"%(i+1, l1SumWhenL1[i], l2SumWhenL2[i], l3SumWhenL3[i], l4SumWhenL4[i], l5SumWhenL5[i], l6SumWhenL6[i], l7SumWhenL7[i], l8SumWhenL8[i], l9SumWhenL9[i], l10SumWhenL10[i]))
+	# print("When Level %i : \nL1 Count : %i\nL2 Count : %i\nL3 Count : %i\nL4 Count : %i\nL5 Count : %i\nL6 Count : %i\nL7 Count : %i\nL8 Count : %i\nL9 Count : %i\nL10 Count : %i"%(i+1, l1Cnt[i], l2Cnt[i], l3Cnt[i], l4Cnt[i], l5Cnt[i], l6Cnt[i], l7Cnt[i], l8Cnt[i], l9Cnt[i], l10Cnt[i]))
 print("============================================")
 
