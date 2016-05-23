@@ -55,19 +55,20 @@ for i in range(10):
 	l10Cnt.append(0)
 
 
-"""
-print("===============================================================================\n")
-print("Weak Pre Force Time : 힘의 세기가 weak 도달 이전까지 걸린 시간\n")
-print("Middle Pre Force Time : 힘의 세기가 weak이후 middle 도달 이전까지 걸린 시간\n")
-print("Strong Pre Force Time : 힘의 세기가 middle이후 strong 도달 이전까지 걸린 시간\n")
-print("Sum of Pre Force Time : 위 세 가지 Pre Force Time의 합\n\n")
 
-print("Average Weak Pre Force Time : 목표 힘의 세기가 weak일 때, Weak Pre Force Time의 평균\n")
-print("Average Middle Pre Force Time : 목표 힘의 세기가 middle일 때, Middle Pre Force Time의 평균\n")
-print("Average Strong Pre Force Time : 목표 힘의 세기가 strong일 때, Strong Pre Force Time의 평균\n")
-print("Average Sum of Pre Force Time : 모든 시행에 대한 Pre Force Time의 평균\n")
-print("===============================================================================\n\n")
-"""
+print('''===============================================================================
+File Name : 파일이름
+Try # : 몇 번째 시행인가를 나타냄
+Level N Pre Force Time : 힘의 세기가 Level N-1에서 Level N이 되기 전까지 걸린 시간
+Sum of Pre Force Time : Level 1~10 Pre Force Time의 합
+
+Result부분
+When Level N : 힘을 N단계로 나눈 시행에서
+Average LN Pre Force Time : 주어진 목표값이 Level N일 때 성공하기 전까지 걸린 평균 시간
+Average L1~L10 Pre Force Time : 위 값들의 평균
+
+===============================================================================''')
+
 
 for root, dirs, files in os.walk('.' + os.path.sep):
 	for filename in files:
@@ -873,11 +874,11 @@ for root, dirs, files in os.walk('.' + os.path.sep):
 
 #totalCnt=l1Cnt+l2Cnt+l3Cnt+l4Cnt+l5Cnt+l6Cnt+l7Cnt+l8Cnt+l9Cnt+l10Cnt
 print("\n\n")
-print("===================Result===================")
+print("=============================Result=============================")
 for i in range(10):
 #	print("When Level %i : \nAverage L1 Pre Force Time : %f\nAverage L2 Pre Force Time : %f\nAverage L3 Pre Force Time : %f\nAverage L4 Pre Force Time : %f\nAverage L5 Pre Force Time : %f\nAverage L6 Pre Force Time : %f\nAverage L7 Pre Force Time : %f\nAverage L8 Pre Force Time : %f\nAverage L9 Pre Force Time : %f\nAverage L10 Pre Force Time : %f\nAverage Sum of Pre Force Time : %f"%(i+1, avg(l1SumWhenL1[i], l1Cnt[i]), avg(l2SumWhenL2[i], l2Cnt[i]), avg(l3SumWhenL3[i], l3Cnt[i]), avg(l4SumWhenL4[i], l4Cnt[i]), avg(l5SumWhenL5[i], l5Cnt[i]), avg(l6SumWhenL6[i], l6Cnt[i]), avg(l7SumWhenL7[i], l7Cnt[i]), avg(l8SumWhenL8[i],l8Cnt[i]), avg(l9SumWhenL9[i],l9Cnt[i]), avg(l10SumWhenL10[i],l10Cnt[i]), (totalL1Sum+totalL2Sum+totalL3Sum+totalL4Sum+totalL5Sum+totalL6Sum+totalL7Sum+totalL8Sum+totalL9Sum+totalL10Sum)/totalCnt))
 	print("\nWhen Level %i : \nAverage L1 Pre Force Time : %f(When goal is L1)\nAverage L2 Pre Force Time : %f(When goal is L2)\nAverage L3 Pre Force Time : %f(When goal is L3)\nAverage L4 Pre Force Time : %f(When goal is L4)\nAverage L5 Pre Force Time : %f(When goal is L5)\nAverage L6 Pre Force Time : %f(When goal is L6)\nAverage L7 Pre Force Time : %f(When goal is L7)\nAverage L8 Pre Force Time : %f(When goal is L8)\nAverage L9 Pre Force Time : %f(When goal is L9)\nAverage L10 Pre Force Time : %f(When goal is L10)\nAverage L1~L10 Pre Force Time : %f"%(i+1, avg(l1SumWhenL1[i], l1Cnt[i]), avg(l2SumWhenL2[i], l2Cnt[i]), avg(l3SumWhenL3[i], l3Cnt[i]), avg(l4SumWhenL4[i], l4Cnt[i]), avg(l5SumWhenL5[i], l5Cnt[i]), avg(l6SumWhenL6[i], l6Cnt[i]), avg(l7SumWhenL7[i], l7Cnt[i]), avg(l8SumWhenL8[i],l8Cnt[i]), avg(l9SumWhenL9[i],l9Cnt[i]), avg(l10SumWhenL10[i],l10Cnt[i]),avg(l1SumWhenL1[i]+l2SumWhenL2[i]+l3SumWhenL3[i]+l4SumWhenL4[i]+l5SumWhenL5[i]+l6SumWhenL6[i]+l7SumWhenL7[i]+l8SumWhenL8[i]+l9SumWhenL9[i]+l10SumWhenL10[i],l1Cnt[i]+l2Cnt[i]+l3Cnt[i]+l4Cnt[i]+l5Cnt[i]+l6Cnt[i]+l7Cnt[i]+l8Cnt[i]+l9Cnt[i]+l10Cnt[i])))
 	# print("When Level %i : \nL1 sum when L1 : %i\nL2 sum when L2 : %i\nL3 sum when L3 : %i\nL4 sum when L4 : %i\nL5 sum when L5 : %i\nL6 sum when L6 : %i\nL7 sum when L7 : %i\nL8 sum when L8 : %i\nL9 sum when L9 : %i\nL10 sum when L10 : %i"%(i+1, l1SumWhenL1[i], l2SumWhenL2[i], l3SumWhenL3[i], l4SumWhenL4[i], l5SumWhenL5[i], l6SumWhenL6[i], l7SumWhenL7[i], l8SumWhenL8[i], l9SumWhenL9[i], l10SumWhenL10[i]))
 	# print("When Level %i : \nL1 Count : %i\nL2 Count : %i\nL3 Count : %i\nL4 Count : %i\nL5 Count : %i\nL6 Count : %i\nL7 Count : %i\nL8 Count : %i\nL9 Count : %i\nL10 Count : %i"%(i+1, l1Cnt[i], l2Cnt[i], l3Cnt[i], l4Cnt[i], l5Cnt[i], l6Cnt[i], l7Cnt[i], l8Cnt[i], l9Cnt[i], l10Cnt[i]))
-print("============================================")
+print("================================================================")
 
