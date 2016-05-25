@@ -185,8 +185,9 @@ for root, dirs, files in os.walk('.' + os.path.sep):
 							if tempList[0] == "Touch" and firstPreFlag==1:
 								tempPreForceTime = float(tempList[4])
 							if tempList[0] == "Pre":
-								preForceSum = preForceSum + float(tempList[3])
+
 								if firstPreFlag == 0:
+									preForceSum = preForceSum + float(tempList[3])
 									tempPreForceTime=float(tempList[3])
 									flag=1
 								elif firstPreFlag == 1:
@@ -262,8 +263,9 @@ for root, dirs, files in os.walk('.' + os.path.sep):
 							if tempList[0] == "Touch" and firstPreFlag==1:
 								tempPreForceTime = float(tempList[4])
 							if tempList[0] == "Pre":
-								preForceSum = preForceSum + float(tempList[3])
+
 								if firstPreFlag == 0:
+									preForceSum = preForceSum + float(tempList[3])
 									tempPreForceTime=float(tempList[3])
 									flag=1
 								elif firstPreFlag == 1:
@@ -339,8 +341,9 @@ for root, dirs, files in os.walk('.' + os.path.sep):
 							if tempList[0] == "Touch" and firstPreFlag==1:
 								tempPreForceTime = float(tempList[4])
 							if tempList[0] == "Pre":
-								preForceSum = preForceSum + float(tempList[3])
+
 								if firstPreFlag == 0:
+									preForceSum = preForceSum + float(tempList[3])
 									tempPreForceTime=float(tempList[3])
 									flag=1
 								elif firstPreFlag == 1:
@@ -414,8 +417,9 @@ for root, dirs, files in os.walk('.' + os.path.sep):
 							if tempList[0] == "Touch" and firstPreFlag==1:
 								tempPreForceTime = float(tempList[4])
 							if tempList[0] == "Pre":
-								preForceSum = preForceSum + float(tempList[3])
+
 								if firstPreFlag == 0:
+									preForceSum = preForceSum + float(tempList[3])
 									tempPreForceTime=float(tempList[3])
 									flag=1
 								elif firstPreFlag == 1:
@@ -489,8 +493,9 @@ for root, dirs, files in os.walk('.' + os.path.sep):
 							if tempList[0] == "Touch" and firstPreFlag==1:
 								tempPreForceTime = float(tempList[4])
 							if tempList[0] == "Pre":
-								preForceSum = preForceSum + float(tempList[3])
+
 								if firstPreFlag == 0:
+									preForceSum = preForceSum + float(tempList[3])
 									tempPreForceTime=float(tempList[3])
 									flag=1
 								elif firstPreFlag == 1:
@@ -564,8 +569,9 @@ for root, dirs, files in os.walk('.' + os.path.sep):
 							if tempList[0] == "Touch" and firstPreFlag==1:
 								tempPreForceTime = float(tempList[4])
 							if tempList[0] == "Pre":
-								preForceSum = preForceSum + float(tempList[3])
+
 								if firstPreFlag == 0:
+									preForceSum = preForceSum + float(tempList[3])
 									tempPreForceTime=float(tempList[3])
 									flag=1
 								elif firstPreFlag == 1:
@@ -639,8 +645,9 @@ for root, dirs, files in os.walk('.' + os.path.sep):
 							if tempList[0] == "Touch" and firstPreFlag==1:
 								tempPreForceTime = float(tempList[4])
 							if tempList[0] == "Pre":
-								preForceSum = preForceSum + float(tempList[3])
+
 								if firstPreFlag == 0:
+									preForceSum = preForceSum + float(tempList[3])
 									tempPreForceTime=float(tempList[3])
 									flag=1
 								elif firstPreFlag == 1:
@@ -714,8 +721,9 @@ for root, dirs, files in os.walk('.' + os.path.sep):
 							if tempList[0] == "Touch" and firstPreFlag==1:
 								tempPreForceTime = float(tempList[4])
 							if tempList[0] == "Pre":
-								preForceSum = preForceSum + float(tempList[3])
+
 								if firstPreFlag == 0:
+									preForceSum = preForceSum + float(tempList[3])
 									tempPreForceTime=float(tempList[3])
 									flag=1
 								elif firstPreFlag == 1:
@@ -789,8 +797,9 @@ for root, dirs, files in os.walk('.' + os.path.sep):
 							if tempList[0] == "Touch" and firstPreFlag==1:
 								tempPreForceTime = float(tempList[4])
 							if tempList[0] == "Pre":
-								preForceSum = preForceSum + float(tempList[3])
+
 								if firstPreFlag == 0:
+									preForceSum = preForceSum + float(tempList[3])
 									tempPreForceTime=float(tempList[3])
 									flag=1
 								elif firstPreFlag == 1:
@@ -864,8 +873,9 @@ for root, dirs, files in os.walk('.' + os.path.sep):
 							if tempList[0] == "Touch" and firstPreFlag==1:
 								tempPreForceTime = float(tempList[4])
 							if tempList[0] == "Pre":
-								preForceSum = preForceSum + float(tempList[3])
+
 								if firstPreFlag == 0:
+									preForceSum = preForceSum + float(tempList[3])
 									tempPreForceTime=float(tempList[3])
 									flag=1
 								elif firstPreFlag == 1:
