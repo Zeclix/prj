@@ -67,13 +67,18 @@ When Level N : 힘을 N단계로 나눈 시행에서
 Average LN Pre Force Time : 주어진 목표값이 Level N일 때 성공하기 전까지 걸린 평균 시간
 Average L1~L10 Pre Force Time : 위 값들의 평균
 
+※ 모든 Pre Force Time의 합과 관련된 값은 원본 데이터 자체에 Pre Force Time이 제대로 안찍히고
+씹혀서 연달아 찍혀 나오는 오류가 있기 때문에 따로 더한 값을 사용함.
+즉, L1 Pre Force Time + ... + L2 Pre Force Time <= Sum of Pre Force Time
+
 ===============================================================================''')
 
+#sum은 데이터 자체에 Pre Force Time이 데이터가 제대로 안찍히고 씹혀서 연달아 찍혀 나오는 오류가 있기 때문에 따로 더했음.
 
 for root, dirs, files in os.walk('.' + os.path.sep):
 	for filename in files:
 		if (os.path.splitext(filename)[-1]) == '.txt':
-			pNum = ((os.path.splitext(filename)[0]).split('_'))[0]
+			subjectNum = ((os.path.splitext(filename)[0]).split('_'))[0]
 			levelNum = int(((os.path.splitext(filename)[0]).split('_'))[4])
 			try:
 				with open(filename, 'r') as f:
@@ -117,12 +122,12 @@ for root, dirs, files in os.walk('.' + os.path.sep):
 							continue
 
 						tempList=line.split()
-						if tempList[0]==pNum:
+						if tempList[0]==subjectNum:
 							firstPreFlag=1
 							tryNum=tryNum+1
 							print("\nTry # : %d" % (tryNum))
 							goalTouchForce=tempList[3]
-
+							preForceSum=0
 
 						if goalTouchForce=="1":
 							if flag==1:
@@ -180,6 +185,7 @@ for root, dirs, files in os.walk('.' + os.path.sep):
 							if tempList[0] == "Touch" and firstPreFlag==1:
 								tempPreForceTime = float(tempList[4])
 							if tempList[0] == "Pre":
+								preForceSum = preForceSum + float(tempList[3])
 								if firstPreFlag == 0:
 									tempPreForceTime=float(tempList[3])
 									flag=1
@@ -192,9 +198,9 @@ for root, dirs, files in os.walk('.' + os.path.sep):
 								if tFlag==0:
 									print("Goal Touch Level : %s" % goalTouchForce)
 
-									l1SumWhenL1[levelNum-1] = l1SumWhenL1[levelNum-1] + l1PreForceTime+l2PreForceTime+l3PreForceTime+l4PreForceTime+l5PreForceTime+l6PreForceTime+l7PreForceTime+l8PreForceTime+l9PreForceTime+l10PreForceTime
+									l1SumWhenL1[levelNum-1] = l1SumWhenL1[levelNum-1] + preForceSum
 
-									print("Level 1 Pre Force Time : %f\nLevel 2 Pre Force Time : %f\nLevel 3 Pre Force Time : %f\nLevel 4 Pre Force Time : %f\nLevel 5 Pre Force Time : %f\nLevel 6 Pre Force Time : %f\nLevel 7 Pre Force Time : %f\nLevel 8 Pre Force Time : %f\nLevel 9 Pre Force Time : %f\nLevel 10 Pre Force Time : %f\nSum of Pre Force Time : %f"%(l1PreForceTime, l2PreForceTime, l3PreForceTime, l4PreForceTime, l5PreForceTime, l6PreForceTime, l7PreForceTime, l8PreForceTime, l9PreForceTime, l10PreForceTime, l1PreForceTime+l2PreForceTime+l3PreForceTime+l4PreForceTime+l5PreForceTime+l6PreForceTime+l7PreForceTime+l8PreForceTime+l9PreForceTime+l10PreForceTime))
+									print("Level 1 Pre Force Time : %f\nLevel 2 Pre Force Time : %f\nLevel 3 Pre Force Time : %f\nLevel 4 Pre Force Time : %f\nLevel 5 Pre Force Time : %f\nLevel 6 Pre Force Time : %f\nLevel 7 Pre Force Time : %f\nLevel 8 Pre Force Time : %f\nLevel 9 Pre Force Time : %f\nLevel 10 Pre Force Time : %f\nSum of Pre Force Time : %f"%(l1PreForceTime, l2PreForceTime, l3PreForceTime, l4PreForceTime, l5PreForceTime, l6PreForceTime, l7PreForceTime, l8PreForceTime, l9PreForceTime, l10PreForceTime, preForceSum))
 
 								tFlag=1
 
@@ -256,6 +262,7 @@ for root, dirs, files in os.walk('.' + os.path.sep):
 							if tempList[0] == "Touch" and firstPreFlag==1:
 								tempPreForceTime = float(tempList[4])
 							if tempList[0] == "Pre":
+								preForceSum = preForceSum + float(tempList[3])
 								if firstPreFlag == 0:
 									tempPreForceTime=float(tempList[3])
 									flag=1
@@ -269,9 +276,9 @@ for root, dirs, files in os.walk('.' + os.path.sep):
 									print("Goal Touch Level : %s" % goalTouchForce)
 
 
-									l2SumWhenL2[levelNum-1] = l2SumWhenL2[levelNum-1] + l1PreForceTime+l2PreForceTime+l3PreForceTime+l4PreForceTime+l5PreForceTime+l6PreForceTime+l7PreForceTime+l8PreForceTime+l9PreForceTime+l10PreForceTime
+									l2SumWhenL2[levelNum-1] = l2SumWhenL2[levelNum-1] + preForceSum
 
-									print("Level 1 Pre Force Time : %f\nLevel 2 Pre Force Time : %f\nLevel 3 Pre Force Time : %f\nLevel 4 Pre Force Time : %f\nLevel 5 Pre Force Time : %f\nLevel 6 Pre Force Time : %f\nLevel 7 Pre Force Time : %f\nLevel 8 Pre Force Time : %f\nLevel 9 Pre Force Time : %f\nLevel 10 Pre Force Time : %f\nSum of Pre Force Time : %f"%(l1PreForceTime, l2PreForceTime, l3PreForceTime, l4PreForceTime, l5PreForceTime, l6PreForceTime, l7PreForceTime, l8PreForceTime, l9PreForceTime, l10PreForceTime, l1PreForceTime+l2PreForceTime+l3PreForceTime+l4PreForceTime+l5PreForceTime+l6PreForceTime+l7PreForceTime+l8PreForceTime+l9PreForceTime+l10PreForceTime))
+									print("Level 1 Pre Force Time : %f\nLevel 2 Pre Force Time : %f\nLevel 3 Pre Force Time : %f\nLevel 4 Pre Force Time : %f\nLevel 5 Pre Force Time : %f\nLevel 6 Pre Force Time : %f\nLevel 7 Pre Force Time : %f\nLevel 8 Pre Force Time : %f\nLevel 9 Pre Force Time : %f\nLevel 10 Pre Force Time : %f\nSum of Pre Force Time : %f"%(l1PreForceTime, l2PreForceTime, l3PreForceTime, l4PreForceTime, l5PreForceTime, l6PreForceTime, l7PreForceTime, l8PreForceTime, l9PreForceTime, l10PreForceTime, preForceSum))
 
 								tFlag=1
 
@@ -332,6 +339,7 @@ for root, dirs, files in os.walk('.' + os.path.sep):
 							if tempList[0] == "Touch" and firstPreFlag==1:
 								tempPreForceTime = float(tempList[4])
 							if tempList[0] == "Pre":
+								preForceSum = preForceSum + float(tempList[3])
 								if firstPreFlag == 0:
 									tempPreForceTime=float(tempList[3])
 									flag=1
@@ -345,8 +353,8 @@ for root, dirs, files in os.walk('.' + os.path.sep):
 									print("Goal Touch Level : %s" % goalTouchForce)
 
 									
-									l3SumWhenL3[levelNum-1] = l3SumWhenL3[levelNum-1] + l1PreForceTime+l2PreForceTime+l3PreForceTime+l4PreForceTime+l5PreForceTime+l6PreForceTime+l7PreForceTime+l8PreForceTime+l9PreForceTime+l10PreForceTime
-									print("Level 1 Pre Force Time : %f\nLevel 2 Pre Force Time : %f\nLevel 3 Pre Force Time : %f\nLevel 4 Pre Force Time : %f\nLevel 5 Pre Force Time : %f\nLevel 6 Pre Force Time : %f\nLevel 7 Pre Force Time : %f\nLevel 8 Pre Force Time : %f\nLevel 9 Pre Force Time : %f\nLevel 10 Pre Force Time : %f\nSum of Pre Force Time : %f"%(l1PreForceTime, l2PreForceTime, l3PreForceTime, l4PreForceTime, l5PreForceTime, l6PreForceTime, l7PreForceTime, l8PreForceTime, l9PreForceTime, l10PreForceTime, l1PreForceTime+l2PreForceTime+l3PreForceTime+l4PreForceTime+l5PreForceTime+l6PreForceTime+l7PreForceTime+l8PreForceTime+l9PreForceTime+l10PreForceTime))
+									l3SumWhenL3[levelNum-1] = l3SumWhenL3[levelNum-1] + preForceSum
+									print("Level 1 Pre Force Time : %f\nLevel 2 Pre Force Time : %f\nLevel 3 Pre Force Time : %f\nLevel 4 Pre Force Time : %f\nLevel 5 Pre Force Time : %f\nLevel 6 Pre Force Time : %f\nLevel 7 Pre Force Time : %f\nLevel 8 Pre Force Time : %f\nLevel 9 Pre Force Time : %f\nLevel 10 Pre Force Time : %f\nSum of Pre Force Time : %f"%(l1PreForceTime, l2PreForceTime, l3PreForceTime, l4PreForceTime, l5PreForceTime, l6PreForceTime, l7PreForceTime, l8PreForceTime, l9PreForceTime, l10PreForceTime, preForceSum))
 
 								tFlag=1
 						elif goalTouchForce=="4": 
@@ -406,6 +414,7 @@ for root, dirs, files in os.walk('.' + os.path.sep):
 							if tempList[0] == "Touch" and firstPreFlag==1:
 								tempPreForceTime = float(tempList[4])
 							if tempList[0] == "Pre":
+								preForceSum = preForceSum + float(tempList[3])
 								if firstPreFlag == 0:
 									tempPreForceTime=float(tempList[3])
 									flag=1
@@ -419,8 +428,8 @@ for root, dirs, files in os.walk('.' + os.path.sep):
 									print("Goal Touch Level : %s" % goalTouchForce)
 
 									
-									l4SumWhenL4[levelNum-1] = l4SumWhenL4[levelNum-1] + l1PreForceTime+l2PreForceTime+l3PreForceTime+l4PreForceTime+l5PreForceTime+l6PreForceTime+l7PreForceTime+l8PreForceTime+l9PreForceTime+l10PreForceTime
-									print("Level 1 Pre Force Time : %f\nLevel 2 Pre Force Time : %f\nLevel 3 Pre Force Time : %f\nLevel 4 Pre Force Time : %f\nLevel 5 Pre Force Time : %f\nLevel 6 Pre Force Time : %f\nLevel 7 Pre Force Time : %f\nLevel 8 Pre Force Time : %f\nLevel 9 Pre Force Time : %f\nLevel 10 Pre Force Time : %f\nSum of Pre Force Time : %f"%(l1PreForceTime, l2PreForceTime, l3PreForceTime, l4PreForceTime, l5PreForceTime, l6PreForceTime, l7PreForceTime, l8PreForceTime, l9PreForceTime, l10PreForceTime, l1PreForceTime+l2PreForceTime+l3PreForceTime+l4PreForceTime+l5PreForceTime+l6PreForceTime+l7PreForceTime+l8PreForceTime+l9PreForceTime+l10PreForceTime))
+									l4SumWhenL4[levelNum-1] = l4SumWhenL4[levelNum-1] + preForceSum
+									print("Level 1 Pre Force Time : %f\nLevel 2 Pre Force Time : %f\nLevel 3 Pre Force Time : %f\nLevel 4 Pre Force Time : %f\nLevel 5 Pre Force Time : %f\nLevel 6 Pre Force Time : %f\nLevel 7 Pre Force Time : %f\nLevel 8 Pre Force Time : %f\nLevel 9 Pre Force Time : %f\nLevel 10 Pre Force Time : %f\nSum of Pre Force Time : %f"%(l1PreForceTime, l2PreForceTime, l3PreForceTime, l4PreForceTime, l5PreForceTime, l6PreForceTime, l7PreForceTime, l8PreForceTime, l9PreForceTime, l10PreForceTime, preForceSum))
 
 								tFlag=1
 						elif goalTouchForce=="5": 
@@ -480,6 +489,7 @@ for root, dirs, files in os.walk('.' + os.path.sep):
 							if tempList[0] == "Touch" and firstPreFlag==1:
 								tempPreForceTime = float(tempList[4])
 							if tempList[0] == "Pre":
+								preForceSum = preForceSum + float(tempList[3])
 								if firstPreFlag == 0:
 									tempPreForceTime=float(tempList[3])
 									flag=1
@@ -493,8 +503,8 @@ for root, dirs, files in os.walk('.' + os.path.sep):
 									print("Goal Touch Level : %s" % goalTouchForce)
 
 									
-									l5SumWhenL5[levelNum-1] = l5SumWhenL5[levelNum-1] + l1PreForceTime+l2PreForceTime+l3PreForceTime+l4PreForceTime+l5PreForceTime+l6PreForceTime+l7PreForceTime+l8PreForceTime+l9PreForceTime+l10PreForceTime
-									print("Level 1 Pre Force Time : %f\nLevel 2 Pre Force Time : %f\nLevel 3 Pre Force Time : %f\nLevel 4 Pre Force Time : %f\nLevel 5 Pre Force Time : %f\nLevel 6 Pre Force Time : %f\nLevel 7 Pre Force Time : %f\nLevel 8 Pre Force Time : %f\nLevel 9 Pre Force Time : %f\nLevel 10 Pre Force Time : %f\nSum of Pre Force Time : %f"%(l1PreForceTime, l2PreForceTime, l3PreForceTime, l4PreForceTime, l5PreForceTime, l6PreForceTime, l7PreForceTime, l8PreForceTime, l9PreForceTime, l10PreForceTime, l1PreForceTime+l2PreForceTime+l3PreForceTime+l4PreForceTime+l5PreForceTime+l6PreForceTime+l7PreForceTime+l8PreForceTime+l9PreForceTime+l10PreForceTime))
+									l5SumWhenL5[levelNum-1] = l5SumWhenL5[levelNum-1] + preForceSum
+									print("Level 1 Pre Force Time : %f\nLevel 2 Pre Force Time : %f\nLevel 3 Pre Force Time : %f\nLevel 4 Pre Force Time : %f\nLevel 5 Pre Force Time : %f\nLevel 6 Pre Force Time : %f\nLevel 7 Pre Force Time : %f\nLevel 8 Pre Force Time : %f\nLevel 9 Pre Force Time : %f\nLevel 10 Pre Force Time : %f\nSum of Pre Force Time : %f"%(l1PreForceTime, l2PreForceTime, l3PreForceTime, l4PreForceTime, l5PreForceTime, l6PreForceTime, l7PreForceTime, l8PreForceTime, l9PreForceTime, l10PreForceTime, preForceSum))
 
 								tFlag=1
 						elif goalTouchForce=="6": 
@@ -554,6 +564,7 @@ for root, dirs, files in os.walk('.' + os.path.sep):
 							if tempList[0] == "Touch" and firstPreFlag==1:
 								tempPreForceTime = float(tempList[4])
 							if tempList[0] == "Pre":
+								preForceSum = preForceSum + float(tempList[3])
 								if firstPreFlag == 0:
 									tempPreForceTime=float(tempList[3])
 									flag=1
@@ -567,8 +578,8 @@ for root, dirs, files in os.walk('.' + os.path.sep):
 									print("Goal Touch Level : %s" % goalTouchForce)
 
 									
-									l6SumWhenL6[levelNum-1] = l6SumWhenL6[levelNum-1] + l1PreForceTime+l2PreForceTime+l3PreForceTime+l4PreForceTime+l5PreForceTime+l6PreForceTime+l7PreForceTime+l8PreForceTime+l9PreForceTime+l10PreForceTime
-									print("Level 1 Pre Force Time : %f\nLevel 2 Pre Force Time : %f\nLevel 3 Pre Force Time : %f\nLevel 4 Pre Force Time : %f\nLevel 5 Pre Force Time : %f\nLevel 6 Pre Force Time : %f\nLevel 7 Pre Force Time : %f\nLevel 8 Pre Force Time : %f\nLevel 9 Pre Force Time : %f\nLevel 10 Pre Force Time : %f\nSum of Pre Force Time : %f"%(l1PreForceTime, l2PreForceTime, l3PreForceTime, l4PreForceTime, l5PreForceTime, l6PreForceTime, l7PreForceTime, l8PreForceTime, l9PreForceTime, l10PreForceTime, l1PreForceTime+l2PreForceTime+l3PreForceTime+l4PreForceTime+l5PreForceTime+l6PreForceTime+l7PreForceTime+l8PreForceTime+l9PreForceTime+l10PreForceTime))
+									l6SumWhenL6[levelNum-1] = l6SumWhenL6[levelNum-1] + preForceSum
+									print("Level 1 Pre Force Time : %f\nLevel 2 Pre Force Time : %f\nLevel 3 Pre Force Time : %f\nLevel 4 Pre Force Time : %f\nLevel 5 Pre Force Time : %f\nLevel 6 Pre Force Time : %f\nLevel 7 Pre Force Time : %f\nLevel 8 Pre Force Time : %f\nLevel 9 Pre Force Time : %f\nLevel 10 Pre Force Time : %f\nSum of Pre Force Time : %f"%(l1PreForceTime, l2PreForceTime, l3PreForceTime, l4PreForceTime, l5PreForceTime, l6PreForceTime, l7PreForceTime, l8PreForceTime, l9PreForceTime, l10PreForceTime, preForceSum))
 
 								tFlag=1
 						elif goalTouchForce=="7": 
@@ -628,6 +639,7 @@ for root, dirs, files in os.walk('.' + os.path.sep):
 							if tempList[0] == "Touch" and firstPreFlag==1:
 								tempPreForceTime = float(tempList[4])
 							if tempList[0] == "Pre":
+								preForceSum = preForceSum + float(tempList[3])
 								if firstPreFlag == 0:
 									tempPreForceTime=float(tempList[3])
 									flag=1
@@ -641,8 +653,8 @@ for root, dirs, files in os.walk('.' + os.path.sep):
 									print("Goal Touch Level : %s" % goalTouchForce)
 
 									
-									l7SumWhenL7[levelNum-1] = l7SumWhenL7[levelNum-1] + l1PreForceTime+l2PreForceTime+l3PreForceTime+l4PreForceTime+l5PreForceTime+l6PreForceTime+l7PreForceTime+l8PreForceTime+l9PreForceTime+l10PreForceTime
-									print("Level 1 Pre Force Time : %f\nLevel 2 Pre Force Time : %f\nLevel 3 Pre Force Time : %f\nLevel 4 Pre Force Time : %f\nLevel 5 Pre Force Time : %f\nLevel 6 Pre Force Time : %f\nLevel 7 Pre Force Time : %f\nLevel 8 Pre Force Time : %f\nLevel 9 Pre Force Time : %f\nLevel 10 Pre Force Time : %f\nSum of Pre Force Time : %f"%(l1PreForceTime, l2PreForceTime, l3PreForceTime, l4PreForceTime, l5PreForceTime, l6PreForceTime, l7PreForceTime, l8PreForceTime, l9PreForceTime, l10PreForceTime, l1PreForceTime+l2PreForceTime+l3PreForceTime+l4PreForceTime+l5PreForceTime+l6PreForceTime+l7PreForceTime+l8PreForceTime+l9PreForceTime+l10PreForceTime))
+									l7SumWhenL7[levelNum-1] = l7SumWhenL7[levelNum-1] + preForceSum
+									print("Level 1 Pre Force Time : %f\nLevel 2 Pre Force Time : %f\nLevel 3 Pre Force Time : %f\nLevel 4 Pre Force Time : %f\nLevel 5 Pre Force Time : %f\nLevel 6 Pre Force Time : %f\nLevel 7 Pre Force Time : %f\nLevel 8 Pre Force Time : %f\nLevel 9 Pre Force Time : %f\nLevel 10 Pre Force Time : %f\nSum of Pre Force Time : %f"%(l1PreForceTime, l2PreForceTime, l3PreForceTime, l4PreForceTime, l5PreForceTime, l6PreForceTime, l7PreForceTime, l8PreForceTime, l9PreForceTime, l10PreForceTime, preForceSum))
 
 								tFlag=1
 						elif goalTouchForce=="8": 
@@ -702,6 +714,7 @@ for root, dirs, files in os.walk('.' + os.path.sep):
 							if tempList[0] == "Touch" and firstPreFlag==1:
 								tempPreForceTime = float(tempList[4])
 							if tempList[0] == "Pre":
+								preForceSum = preForceSum + float(tempList[3])
 								if firstPreFlag == 0:
 									tempPreForceTime=float(tempList[3])
 									flag=1
@@ -715,8 +728,8 @@ for root, dirs, files in os.walk('.' + os.path.sep):
 									print("Goal Touch Level : %s" % goalTouchForce)
 
 									
-									l8SumWhenL8[levelNum-1] = l8SumWhenL8[levelNum-1] + l1PreForceTime+l2PreForceTime+l3PreForceTime+l4PreForceTime+l5PreForceTime+l6PreForceTime+l7PreForceTime+l8PreForceTime+l9PreForceTime+l10PreForceTime
-									print("Level 1 Pre Force Time : %f\nLevel 2 Pre Force Time : %f\nLevel 3 Pre Force Time : %f\nLevel 4 Pre Force Time : %f\nLevel 5 Pre Force Time : %f\nLevel 6 Pre Force Time : %f\nLevel 7 Pre Force Time : %f\nLevel 8 Pre Force Time : %f\nLevel 9 Pre Force Time : %f\nLevel 10 Pre Force Time : %f\nSum of Pre Force Time : %f"%(l1PreForceTime, l2PreForceTime, l3PreForceTime, l4PreForceTime, l5PreForceTime, l6PreForceTime, l7PreForceTime, l8PreForceTime, l9PreForceTime, l10PreForceTime, l1PreForceTime+l2PreForceTime+l3PreForceTime+l4PreForceTime+l5PreForceTime+l6PreForceTime+l7PreForceTime+l8PreForceTime+l9PreForceTime+l10PreForceTime))
+									l8SumWhenL8[levelNum-1] = l8SumWhenL8[levelNum-1] + preForceSum
+									print("Level 1 Pre Force Time : %f\nLevel 2 Pre Force Time : %f\nLevel 3 Pre Force Time : %f\nLevel 4 Pre Force Time : %f\nLevel 5 Pre Force Time : %f\nLevel 6 Pre Force Time : %f\nLevel 7 Pre Force Time : %f\nLevel 8 Pre Force Time : %f\nLevel 9 Pre Force Time : %f\nLevel 10 Pre Force Time : %f\nSum of Pre Force Time : %f"%(l1PreForceTime, l2PreForceTime, l3PreForceTime, l4PreForceTime, l5PreForceTime, l6PreForceTime, l7PreForceTime, l8PreForceTime, l9PreForceTime, l10PreForceTime, preForceSum))
 
 								tFlag=1
 						elif goalTouchForce=="9": 
@@ -776,6 +789,7 @@ for root, dirs, files in os.walk('.' + os.path.sep):
 							if tempList[0] == "Touch" and firstPreFlag==1:
 								tempPreForceTime = float(tempList[4])
 							if tempList[0] == "Pre":
+								preForceSum = preForceSum + float(tempList[3])
 								if firstPreFlag == 0:
 									tempPreForceTime=float(tempList[3])
 									flag=1
@@ -789,8 +803,8 @@ for root, dirs, files in os.walk('.' + os.path.sep):
 									print("Goal Touch Level : %s" % goalTouchForce)
 
 									
-									l9SumWhenL9[levelNum-1] = l9SumWhenL9[levelNum-1] + l1PreForceTime+l2PreForceTime+l3PreForceTime+l4PreForceTime+l5PreForceTime+l6PreForceTime+l7PreForceTime+l8PreForceTime+l9PreForceTime+l10PreForceTime
-									print("Level 1 Pre Force Time : %f\nLevel 2 Pre Force Time : %f\nLevel 3 Pre Force Time : %f\nLevel 4 Pre Force Time : %f\nLevel 5 Pre Force Time : %f\nLevel 6 Pre Force Time : %f\nLevel 7 Pre Force Time : %f\nLevel 8 Pre Force Time : %f\nLevel 9 Pre Force Time : %f\nLevel 10 Pre Force Time : %f\nSum of Pre Force Time : %f"%(l1PreForceTime, l2PreForceTime, l3PreForceTime, l4PreForceTime, l5PreForceTime, l6PreForceTime, l7PreForceTime, l8PreForceTime, l9PreForceTime, l10PreForceTime, l1PreForceTime+l2PreForceTime+l3PreForceTime+l4PreForceTime+l5PreForceTime+l6PreForceTime+l7PreForceTime+l8PreForceTime+l9PreForceTime+l10PreForceTime))
+									l9SumWhenL9[levelNum-1] = l9SumWhenL9[levelNum-1] + preForceSum
+									print("Level 1 Pre Force Time : %f\nLevel 2 Pre Force Time : %f\nLevel 3 Pre Force Time : %f\nLevel 4 Pre Force Time : %f\nLevel 5 Pre Force Time : %f\nLevel 6 Pre Force Time : %f\nLevel 7 Pre Force Time : %f\nLevel 8 Pre Force Time : %f\nLevel 9 Pre Force Time : %f\nLevel 10 Pre Force Time : %f\nSum of Pre Force Time : %f"%(l1PreForceTime, l2PreForceTime, l3PreForceTime, l4PreForceTime, l5PreForceTime, l6PreForceTime, l7PreForceTime, l8PreForceTime, l9PreForceTime, l10PreForceTime, preForceSum))
 
 								tFlag=1
 						elif goalTouchForce=="10": 
@@ -850,6 +864,7 @@ for root, dirs, files in os.walk('.' + os.path.sep):
 							if tempList[0] == "Touch" and firstPreFlag==1:
 								tempPreForceTime = float(tempList[4])
 							if tempList[0] == "Pre":
+								preForceSum = preForceSum + float(tempList[3])
 								if firstPreFlag == 0:
 									tempPreForceTime=float(tempList[3])
 									flag=1
@@ -863,8 +878,8 @@ for root, dirs, files in os.walk('.' + os.path.sep):
 									print("Goal Touch Level : %s" % goalTouchForce)
 
 									
-									l10SumWhenL10[levelNum-1] = l10SumWhenL10[levelNum-1] + l1PreForceTime+l2PreForceTime+l3PreForceTime+l4PreForceTime+l5PreForceTime+l6PreForceTime+l7PreForceTime+l8PreForceTime+l9PreForceTime+l10PreForceTime
-									print("Level 1 Pre Force Time : %f\nLevel 2 Pre Force Time : %f\nLevel 3 Pre Force Time : %f\nLevel 4 Pre Force Time : %f\nLevel 5 Pre Force Time : %f\nLevel 6 Pre Force Time : %f\nLevel 7 Pre Force Time : %f\nLevel 8 Pre Force Time : %f\nLevel 9 Pre Force Time : %f\nLevel 10 Pre Force Time : %f\nSum of Pre Force Time : %f"%(l1PreForceTime, l2PreForceTime, l3PreForceTime, l4PreForceTime, l5PreForceTime, l6PreForceTime, l7PreForceTime, l8PreForceTime, l9PreForceTime, l10PreForceTime, l1PreForceTime+l2PreForceTime+l3PreForceTime+l4PreForceTime+l5PreForceTime+l6PreForceTime+l7PreForceTime+l8PreForceTime+l9PreForceTime+l10PreForceTime))
+									l10SumWhenL10[levelNum-1] = l10SumWhenL10[levelNum-1] + preForceSum
+									print("Level 1 Pre Force Time : %f\nLevel 2 Pre Force Time : %f\nLevel 3 Pre Force Time : %f\nLevel 4 Pre Force Time : %f\nLevel 5 Pre Force Time : %f\nLevel 6 Pre Force Time : %f\nLevel 7 Pre Force Time : %f\nLevel 8 Pre Force Time : %f\nLevel 9 Pre Force Time : %f\nLevel 10 Pre Force Time : %f\nSum of Pre Force Time : %f"%(l1PreForceTime, l2PreForceTime, l3PreForceTime, l4PreForceTime, l5PreForceTime, l6PreForceTime, l7PreForceTime, l8PreForceTime, l9PreForceTime, l10PreForceTime, preForceSum))
 
 								tFlag=1
 
