@@ -6,8 +6,10 @@ def avg(a, b):
 	else:
 		return 0
 
+#totalTryCnt : 모든 시행 수
+totalTryCnt = 0
 
-#lNSumWhenLN[levelNum] : levelNum단계수로 나눈 실험에서 목표값이 N일 때 N의 Pre Force Time 합
+#lNSumWhenLN[levelNum-1] : levelNum단계수로 나눈 실험에서 목표값이 N일 때 N의 Pre Force Time 합
 l1SumWhenL1=[]
 l2SumWhenL2=[]
 l3SumWhenL3=[]
@@ -171,6 +173,7 @@ for root, dirs, files in os.walk('.' + os.path.sep):
 						if tempList[0]==subjectNum:
 							firstPreFlag=1
 							tryNum=tryNum+1
+							totalTryCnt = totalTryCnt+1
 							print("\nTry # : %d" % (tryNum))
 							goalTouchForce=tempList[3]
 							preForceSum=0
@@ -966,13 +969,18 @@ for root, dirs, files in os.walk('.' + os.path.sep):
 #totalCnt=l1Cnt+l2Cnt+l3Cnt+l4Cnt+l5Cnt+l6Cnt+l7Cnt+l8Cnt+l9Cnt+l10Cnt
 print("\n\n")
 print("=============================Result=============================")
+
 for i in range(10):
 #	print("When Level %i : \nAverage L1 Pre Force Time : %f\nAverage L2 Pre Force Time : %f\nAverage L3 Pre Force Time : %f\nAverage L4 Pre Force Time : %f\nAverage L5 Pre Force Time : %f\nAverage L6 Pre Force Time : %f\nAverage L7 Pre Force Time : %f\nAverage L8 Pre Force Time : %f\nAverage L9 Pre Force Time : %f\nAverage L10 Pre Force Time : %f\nAverage Sum of Pre Force Time : %f"%(i+1, avg(l1SumWhenL1[i], l1Cnt[i]), avg(l2SumWhenL2[i], l2Cnt[i]), avg(l3SumWhenL3[i], l3Cnt[i]), avg(l4SumWhenL4[i], l4Cnt[i]), avg(l5SumWhenL5[i], l5Cnt[i]), avg(l6SumWhenL6[i], l6Cnt[i]), avg(l7SumWhenL7[i], l7Cnt[i]), avg(l8SumWhenL8[i],l8Cnt[i]), avg(l9SumWhenL9[i],l9Cnt[i]), avg(l10SumWhenL10[i],l10Cnt[i]), (totalL1Sum+totalL2Sum+totalL3Sum+totalL4Sum+totalL5Sum+totalL6Sum+totalL7Sum+totalL8Sum+totalL9Sum+totalL10Sum)/totalCnt))
 	if i==0 or i==1:
 		continue
-	print("\nWhen Level %i : \nAverage L1 Pre Force Time : %f(When goal is L1)\nAverage L2 Pre Force Time : %f(When goal is L2)\nAverage L3 Pre Force Time : %f(When goal is L3)\nAverage L4 Pre Force Time : %f(When goal is L4)\nAverage L5 Pre Force Time : %f(When goal is L5)\nAverage L6 Pre Force Time : %f(When goal is L6)\nAverage L7 Pre Force Time : %f(When goal is L7)\nAverage L8 Pre Force Time : %f(When goal is L8)\nAverage L9 Pre Force Time : %f(When goal is L9)\nAverage L10 Pre Force Time : %f(When goal is L10)\nAverage L1~L10 Pre Force Time : %f"%(i+1, avg(l1SumWhenL1[i], l1Cnt[i]), avg(l2SumWhenL2[i], l2Cnt[i]), avg(l3SumWhenL3[i], l3Cnt[i]), avg(l4SumWhenL4[i], l4Cnt[i]), avg(l5SumWhenL5[i], l5Cnt[i]), avg(l6SumWhenL6[i], l6Cnt[i]), avg(l7SumWhenL7[i], l7Cnt[i]), avg(l8SumWhenL8[i],l8Cnt[i]), avg(l9SumWhenL9[i],l9Cnt[i]), avg(l10SumWhenL10[i],l10Cnt[i]),avg(l1SumWhenL1[i]+l2SumWhenL2[i]+l3SumWhenL3[i]+l4SumWhenL4[i]+l5SumWhenL5[i]+l6SumWhenL6[i]+l7SumWhenL7[i]+l8SumWhenL8[i]+l9SumWhenL9[i]+l10SumWhenL10[i],l1Cnt[i]+l2Cnt[i]+l3Cnt[i]+l4Cnt[i]+l5Cnt[i]+l6Cnt[i]+l7Cnt[i]+l8Cnt[i]+l9Cnt[i]+l10Cnt[i])))
-	# print("When Level %i : \nL1 sum when L1 : %i\nL2 sum when L2 : %i\nL3 sum when L3 : %i\nL4 sum when L4 : %i\nL5 sum when L5 : %i\nL6 sum when L6 : %i\nL7 sum when L7 : %i\nL8 sum when L8 : %i\nL9 sum when L9 : %i\nL10 sum when L10 : %i"%(i+1, l1SumWhenL1[i], l2SumWhenL2[i], l3SumWhenL3[i], l4SumWhenL4[i], l5SumWhenL5[i], l6SumWhenL6[i], l7SumWhenL7[i], l8SumWhenL8[i], l9SumWhenL9[i], l10SumWhenL10[i]))
-	# print("When Level %i : \nL1 Count : %i\nL2 Count : %i\nL3 Count : %i\nL4 Count : %i\nL5 Count : %i\nL6 Count : %i\nL7 Count : %i\nL8 Count : %i\nL9 Count : %i\nL10 Count : %i"%(i+1, l1Cnt[i], l2Cnt[i], l3Cnt[i], l4Cnt[i], l5Cnt[i], l6Cnt[i], l7Cnt[i], l8Cnt[i], l9Cnt[i], l10Cnt[i]))
+	print("\nWhen Level %i : \nAverage L1 Pre Force Time : %f(When goal is L1)\nAverage L2 Pre Force Time : %f(When goal is L2)\nAverage L3 Pre Force Time : %f(When goal is L3)\nAverage L4 Pre Force Time : %f(When goal is L4)\nAverage L5 Pre Force Time : %f(When goal is L5)\nAverage L6 Pre Force Time : %f(When goal is L6)\nAverage L7 Pre Force Time : %f(When goal is L7)\nAverage L8 Pre Force Time : %f(When goal is L8)\nAverage L9 Pre Force Time : %f(When goal is L9)\nAverage L10 Pre Force Time : %f(When goal is L10)\nAverage L1~L10 Pre Force Time : %f"%(i+1, avg(l1SumWhenL1[i], totalTryCnt), avg(l2SumWhenL2[i], totalTryCnt), avg(l3SumWhenL3[i], totalTryCnt), avg(l4SumWhenL4[i], totalTryCnt), avg(l5SumWhenL5[i], totalTryCnt), avg(l6SumWhenL6[i], totalTryCnt), avg(l7SumWhenL7[i], totalTryCnt), avg(l8SumWhenL8[i],totalTryCnt), avg(l9SumWhenL9[i],totalTryCnt), avg(l10SumWhenL10[i],totalTryCnt),avg(l1SumWhenL1[i]+l2SumWhenL2[i]+l3SumWhenL3[i]+l4SumWhenL4[i]+l5SumWhenL5[i]+l6SumWhenL6[i]+l7SumWhenL7[i]+l8SumWhenL8[i]+l9SumWhenL9[i]+l10SumWhenL10[i],totalTryCnt)))
+	print("\nL1 sum when L1 : %i\nL2 sum when L2 : %i\nL3 sum when L3 : %i\nL4 sum when L4 : %i\nL5 sum when L5 : %i\nL6 sum when L6 : %i\nL7 sum when L7 : %i\nL8 sum when L8 : %i\nL9 sum when L9 : %i\nL10 sum when L10 : %i"%(l1SumWhenL1[i], l2SumWhenL2[i], l3SumWhenL3[i], l4SumWhenL4[i], l5SumWhenL5[i], l6SumWhenL6[i], l7SumWhenL7[i], l8SumWhenL8[i], l9SumWhenL9[i], l10SumWhenL10[i]))
+	print("\nL1 Count : %i\nL2 Count : %i\nL3 Count : %i\nL4 Count : %i\nL5 Count : %i\nL6 Count : %i\nL7 Count : %i\nL8 Count : %i\nL9 Count : %i\nL10 Count : %i"%(l1Cnt[i], l2Cnt[i], l3Cnt[i], l4Cnt[i], l5Cnt[i], l6Cnt[i], l7Cnt[i], l8Cnt[i], l9Cnt[i], l10Cnt[i]))
 	print("\nL1 Failure Rate : %f(When goal is L1)\nL2 Failure Rate : %f(When goal is L2)\nL3 Failure Rate : %f(When goal is L3)\nL4 Failure Rate : %f(When goal is L4)\nL5 Failure Rate : %f(When goal is L5)\nL6 Failure Rate : %f(When goal is L6)\nL7 Failure Rate : %f(When goal is L7)\nL8 Failure Rate : %f(When goal is L8)\nL9 Failure Rate : %f(When goal is L9)\nL10 Failure Rate : %f(When goal is L10)\nTotal Failure Rate : %f"%(avg(l1TryCntWhenL1[i]-l1SuccessCntWhenL1[i], l1TryCntWhenL1[i]), avg(l2TryCntWhenL2[i]-l2SuccessCntWhenL2[i], l2TryCntWhenL2[i]), avg(l3TryCntWhenL3[i]-l3SuccessCntWhenL3[i], l3TryCntWhenL3[i]), avg(l4TryCntWhenL4[i]-l4SuccessCntWhenL4[i], l4TryCntWhenL4[i]), avg(l5TryCntWhenL5[i]-l5SuccessCntWhenL5[i], l5TryCntWhenL5[i]), avg(l6TryCntWhenL6[i]-l6SuccessCntWhenL6[i], l6TryCntWhenL6[i]), avg(l7TryCntWhenL7[i]-l7SuccessCntWhenL7[i], l7TryCntWhenL7[i]), avg(l8TryCntWhenL8[i]-l8SuccessCntWhenL8[i],l8TryCntWhenL8[i]), avg(l9TryCntWhenL9[i]-l9SuccessCntWhenL9[i],l9TryCntWhenL9[i]), avg(l10TryCntWhenL10[i]-l10SuccessCntWhenL10[i],l10TryCntWhenL10[i]),avg(l1TryCntWhenL1[i]+l2TryCntWhenL2[i]+l3TryCntWhenL3[i]+l4TryCntWhenL4[i]+l5TryCntWhenL5[i]+l6TryCntWhenL6[i]+l7TryCntWhenL7[i]+l8TryCntWhenL8[i]+l9TryCntWhenL9[i]+l10TryCntWhenL10[i]-l1SuccessCntWhenL1[i]-l2SuccessCntWhenL2[i]-l3SuccessCntWhenL3[i]-l4SuccessCntWhenL4[i]-l5SuccessCntWhenL5[i]-l6SuccessCntWhenL6[i]-l7SuccessCntWhenL7[i]-l8SuccessCntWhenL8[i]-l9SuccessCntWhenL9[i]-l10SuccessCntWhenL10[i], l1TryCntWhenL1[i]+l2TryCntWhenL2[i]+l3TryCntWhenL3[i]+l4TryCntWhenL4[i]+l5TryCntWhenL5[i]+l6TryCntWhenL6[i]+l7TryCntWhenL7[i]+l8TryCntWhenL8[i]+l9TryCntWhenL9[i]+l10TryCntWhenL10[i])))
 print("================================================================")
+
+#for debug
+#print("totalTryCnt : %i\n"%(totalTryCnt))
+
 
